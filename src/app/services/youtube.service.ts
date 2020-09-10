@@ -8,10 +8,10 @@ import { map } from 'rxjs/operators';
 })
 export class YoutubeService {
   private youtubeUrl = 'https://www.googleapis.com/youtube/v3';
-  // private apikey = 'AIzaSyBczsC9nqZBQECiJYDXKM7aPvOUjEqbFww';
-  // private playlist = 'UU2ZEYYMMDt7mNOxKOzoQtqQ';
-  private apikey = 'AIzaSyBHLZzytcylRRpuFepi2mHyMD3Ede-r7-s';
-  private playlist = 'UUuaPTYj15JSkETGnEseaFFg';
+  private apikey = 'AIzaSyBczsC9nqZBQECiJYDXKM7aPvOUjEqbFww';
+  private playlist = 'UU2ZEYYMMDt7mNOxKOzoQtqQ';
+  //private apikey = 'AIzaSyBHLZzytcylRRpuFepi2mHyMD3Ede-r7-s';
+  //private playlist = 'UUuaPTYj15JSkETGnEseaFFg';
   private nextPageToken = '';
 
   constructor(private http: HttpClient) {}
@@ -22,7 +22,8 @@ export class YoutubeService {
       .set('part', 'snippet')
       .set('maxResults', '10')
       .set('playlistId', this.playlist)
-      .set('key', this.apikey);
+      .set('key', this.apikey)
+      .set('pageToken', this.nextPageToken);
 
     return this.http
       .get<YoutubeResponse>(url, { params })
